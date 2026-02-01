@@ -264,7 +264,7 @@ export default function SignUpScreen() {
 									name="envelope.fill"
 									size={20}
 									tintColor={
-										emailFocused ? "#FF6B6B" : "#999999"
+										emailFocused ? "#008080" : "#999999"
 									}
 								/>
 							</View>
@@ -301,7 +301,7 @@ export default function SignUpScreen() {
 										size={20}
 										tintColor={
 											passwordFocused
-												? "#FF6B6B"
+												? "#008080"
 												: "#999999"
 										}
 									/>
