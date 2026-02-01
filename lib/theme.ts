@@ -2,12 +2,12 @@ import { useMaterial3Theme } from "@pchmn/expo-material3-theme";
 import { useColorScheme } from "react-native";
 
 // Spark app primary color - a warm, romantic pink/coral
-export const SEED_COLOR = "#FF6B6B";
+export const SEED_COLOR = "#008080";
 
 // Custom color palette for the dating app
 export const AppColors = {
-	primary: "#FF6B6B",
-	secondary: "#4ECDC4",
+	primary: "#008080",
+	secondary: "#039797",
 	accent: "#FFE66D",
 	like: "#4CD964",
 	reject: "#FF3B30",

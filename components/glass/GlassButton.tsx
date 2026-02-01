@@ -14,7 +14,7 @@ interface GlassButtonProps {
 
 const buttonStyle = {
 	height: 56,
-	borderRadius: 28,
+	borderRadius: 20,
 	borderCurve: "continuous" as const,
 	justifyContent: "center" as const,
 	alignItems: "center" as const,

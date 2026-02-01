@@ -1,13 +1,9 @@
-import React from "react";
-import { Text, View } from "react-native";
+import { Stack } from "expo-router";
 
-const StartPage = () => {
-	console.log("I am at APP");
+export default function AppLayout() {
 	return (
-		<View>
-			<Text>StartPage</Text>
-		</View>
+		<Stack screenOptions={{ headerShown: false }}>
+			<Stack.Screen name="(tabs)" />
+		</Stack>
 	);
-};
-
-export default StartPage;
+}

@@ -1,10 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SymbolView } from "expo-symbols";
+import { useRef, useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { GlassBackButton, GlassButton, GlassInput } from "@/components/glass";
+import { GlassBackButton, GlassButton } from "@/components/glass";
 import { HeaderIcon, KeyboardAwareView } from "@/components/ui";
 import { useAppTheme } from "@/lib/theme";
 
@@ -38,16 +39,33 @@ export function CodeVerification({
 }: CodeVerificationProps) {
 	const { colors } = useAppTheme();
 
-	const [code, setCode] = useState("");
+	const [code, setCode] = useState(["", "", "", "", "", ""]);
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
+	const hiddenInputRef = useRef<TextInput>(null);
+
+	const handleCodeChange = (text: string) => {
+		const digits = text.replace(/\D/g, "").slice(0, 6).split("");
+		const newCode = [...digits];
+		while (newCode.length < 6) {
+			newCode.push("");
+		}
+		setCode(newCode);
+	};
+
+	const handleKeyPress = (e: any) => {
+		if (e.nativeEvent.key === "Backspace") {
+			const joined = code.join("");
+			handleCodeChange(joined.slice(0, -1));
+		}
+	};
 
 	const handleVerify = async () => {
 		setLoading(true);
 		setError("");
 
 		try {
-			await onVerify(code);
+			await onVerify(code.join(""));
 		} catch (err: any) {
 			setError(
 				err.errors?.[0]?.message ||
@@ -60,7 +78,7 @@ export function CodeVerification({
 	};
 
 	const handleBack = () => {
-		setCode("");
+		setCode(["", "", "", "", "", ""]);
 		setError("");
 		onBack();
 	};
@@ -83,7 +101,11 @@ export function CodeVerification({
 						entering={FadeInDown.delay(100).duration(500)}
 						style={styles.header}
 					>
-						<HeaderIcon icon={icon} />
+						<HeaderIcon
+							icon={icon}
+							backgroundColor="#008080"
+							iconColor="#FFFFFF"
+						/>
 						<Text
 							style={[
 								styles.title,
@@ -107,21 +129,62 @@ export function CodeVerification({
 						entering={FadeInDown.delay(200).duration(500)}
 						style={styles.form}
 					>
-						<GlassInput
-							placeholder="Enter code"
-							value={code}
-							onChangeText={setCode}
-							keyboardType="number-pad"
-							autoFocus
-						/>
+						<View
+							style={styles.codeInputContainer}
+							onTouchStart={() => hiddenInputRef.current?.focus()}
+						>
+							<TextInput
+								ref={hiddenInputRef}
+								value={code.join("")}
+								onChangeText={handleCodeChange}
+								onKeyPress={handleKeyPress}
+								keyboardType="number-pad"
+								autoFocus
+								maxLength={6}
+								textContentType="oneTimeCode"
+								style={styles.hiddenInput}
+								caretHidden={true}
+								selectionColor="#008080"
+							/>
+							{code.map((digit, index) => (
+								<View
+									key={index}
+									style={[
+										styles.codeInput,
+										{
+											borderColor: digit
+												? "#008080"
+												: "#E5E5E5",
+											backgroundColor: "#FFFFFF",
+										},
+									]}
+								>
+									<Text
+										style={[
+											styles.codeDigit,
+											{ color: colors.onBackground },
+										]}
+									>
+										{digit}
+									</Text>
+								</View>
+							))}
+						</View>
 
 						{error ? (
-							<Animated.Text
+							<Animated.View
 								entering={FadeInDown.duration(300)}
-								style={styles.error}
+								style={styles.errorContainer}
 							>
-								{error}
-							</Animated.Text>
+								<SymbolView
+									name="exclamationmark.triangle.fill"
+									size={16}
+									tintColor="#DC2626"
+								/>
+								<Text selectable style={styles.errorText}>
+									{error}
+								</Text>
+							</Animated.View>
 						) : null}
 					</Animated.View>
 				</View>
@@ -133,7 +196,7 @@ export function CodeVerification({
 					<GlassButton
 						onPress={handleVerify}
 						label={loading ? "Verifying..." : buttonText}
-						disabled={loading || code.length === 0}
+						disabled={loading || code.some((digit) => !digit)}
 					/>
 				</Animated.View>
 			</KeyboardAwareView>
@@ -146,7 +209,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	backButtonContainer: {
-		paddingHorizontal: 24,
+		paddingLeft: 14,
+		paddingRight: 24,
 		paddingTop: 8,
 	},
 	keyboardView: {
@@ -173,10 +237,51 @@ const styles = StyleSheet.create({
 	form: {
 		gap: 16,
 	},
-	error: {
-		color: "#FF3B30",
+	codeInputContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		gap: 12,
+		position: "relative",
+	},
+	hiddenInput: {
+		position: "absolute",
+		left: -2,
+		right: -2,
+		height: 60,
+		fontSize: 24,
+		letterSpacing: 56,
+		textAlign: "left",
+		paddingLeft: 28,
+		color: "transparent",
+		backgroundColor: "transparent",
+		zIndex: 1,
+	},
+	codeInput: {
+		flex: 1,
+		height: 60,
+		borderWidth: 2,
+		borderRadius: 12,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	codeDigit: {
+		fontSize: 24,
+		fontWeight: "600",
+	},
+	errorContainer: {
+		flexDirection: "row",
+		alignItems: "center",
+		gap: 8,
+		backgroundColor: "rgba(220,38,38,0.08)",
+		padding: 14,
+		borderRadius: 12,
+		marginTop: -8,
+	},
+	errorText: {
+		flex: 1,
+		color: "#DC2626",
 		fontSize: 14,
-		textAlign: "center",
+		lineHeight: 20,
 	},
 	footer: {
 		padding: 24,
