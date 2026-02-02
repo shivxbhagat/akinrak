@@ -1,9 +1,47 @@
+import { useUser } from "@clerk/clerk-expo";
 import { Stack } from "expo-router";
+import { StyleSheet } from "react-native";
+
+import { useAppTheme } from "@/lib/theme";
 
 export default function AppLayout() {
+	const { user } = useUser();
+	const { colors } = useAppTheme();
+
+	//show a spinner while loading
+	const hasProfile = true;
+
 	return (
 		<Stack screenOptions={{ headerShown: false }}>
-			<Stack.Screen name="(tabs)" />
+			{/* Onboarding - only when NO profile exists */}
+			<Stack.Protected guard={!hasProfile}>
+				<Stack.Screen name="onboarding" />
+			</Stack.Protected>
+
+			{/* Main app - only when profile EXISTS */}
+			<Stack.Protected guard={hasProfile}>
+				<Stack.Screen name="(tabs)" />
+				<Stack.Screen
+					name="edit-profile"
+					options={{ headerShown: true, title: "Edit Profile" }}
+				/>
+				<Stack.Screen
+					name="chat/[id]"
+					options={{ headerShown: true, title: "Chat" }}
+				/>
+				<Stack.Screen
+					name="profile/[id]"
+					options={{ presentation: "modal" }}
+				/>
+			</Stack.Protected>
 		</Stack>
 	);
 }
+
+const styles = StyleSheet.create({
+	loading: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+});

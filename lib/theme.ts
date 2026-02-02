@@ -7,7 +7,7 @@ export const SEED_COLOR = "#008080";
 // Custom color palette for the dating app
 export const AppColors = {
 	primary: "#008080",
-	secondary: "#039797",
+	secondary: "#008080",
 	accent: "#FFE66D",
 	like: "#4CD964",
 	reject: "#FF3B30",

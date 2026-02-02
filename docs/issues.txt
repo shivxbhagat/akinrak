@@ -1,0 +1,8 @@
+1. For (auth) screens, it should be having a stack, and once its on sign in screen, it should clear the stack
+
+=> Flow
+Welcome Screen -> Sign In Screen (clear stack) -> Sign Up Screen (when pressed: add to stack) -> Sign In Screen (when pressed: clear stack)
+
+
+2. Verify Email screen: toast placing to be fixed
+Add resend verification code button.

@@ -1,10 +1,14 @@
 import { useAuth } from "@clerk/clerk-expo";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { GlassButton } from "@/components/glass";
+import { useAppTheme } from "@/lib/theme";
 
 const StartPage = () => {
 	const { signOut } = useAuth();
+	const { colors } = useAppTheme();
 
 	const handleSignOut = async () => {
 		try {
@@ -15,15 +19,16 @@ const StartPage = () => {
 	};
 
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text style={styles.title}>StartPage</Text>
+		<SafeAreaView
+			style={[styles.container, { backgroundColor: colors.background }]}
+		>
+			<View style={styles.content}>
+				<Text style={[styles.title, { color: colors.onBackground }]}>
+					Welcome Home!
+				</Text>
 
-			<TouchableOpacity
-				style={styles.signOutButton}
-				onPress={handleSignOut}
-			>
-				<Text style={styles.signOutText}>Sign Out</Text>
-			</TouchableOpacity>
+				<GlassButton onPress={handleSignOut} label="Sign Out" />
+			</View>
 		</SafeAreaView>
 	);
 };
@@ -31,25 +36,18 @@ const StartPage = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	content: {
+		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
 		padding: 24,
+		gap: 32,
 	},
 	title: {
-		fontSize: 24,
-		fontWeight: "600",
-		marginBottom: 40,
-	},
-	signOutButton: {
-		backgroundColor: "#008080",
-		paddingHorizontal: 32,
-		paddingVertical: 14,
-		borderRadius: 20,
-	},
-	signOutText: {
-		color: "#FFFFFF",
-		fontSize: 16,
-		fontWeight: "600",
+		fontSize: 32,
+		fontWeight: "700",
+		letterSpacing: -0.5,
 	},
 });
 

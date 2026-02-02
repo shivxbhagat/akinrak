@@ -35,7 +35,7 @@ export function CodeVerification({
 	onVerify,
 	onBack,
 	buttonText = "Verify",
-	icon = "shield-checkmark-outline",
+	icon = "mail-outline",
 }: CodeVerificationProps) {
 	const { colors } = useAppTheme();
 
@@ -182,7 +182,7 @@ export function CodeVerification({
 									tintColor="#DC2626"
 								/>
 								<Text selectable style={styles.errorText}>
-									{error}
+									Verification code is incorrect
 								</Text>
 							</Animated.View>
 						) : null}
