@@ -39,7 +39,7 @@ To run this project locally, ensure you have Node.js and `pnpm` installed.
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/shivxbhagat/akinrak.git](https://github.com/shivxbhagat/akinrak.git)
+    git clone https://github.com/shivxbhagat/akinrak.git
     cd akinrak
 
     ```
