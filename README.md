@@ -11,12 +11,11 @@ The foundational structure of Akinrak is laid out, with the following core compo
 -   **Authentication:** Fully implemented using **Clerk** for secure user onboarding and session management.
 -   **User Interface:** The **Final Itinerary UI** is complete, providing a clean, intuitive, and mobile-responsive presentation of the generated travel plans.
 
-<img src="docs/img/sign-up.png" alt="Sign Up Page" width="200">
-<img src="docs/img/login.png" alt="Login Page" width="200">
-<img src="docs/img/plan.png" alt="Plan Tab" width="200">
-<img src="docs/img/itenary-1.png" alt="Day 1 Itenary" width="200">
-<img src="docs/img/itenary-2.png" alt="Day 2 Itenary" width="200">
-<img src="docs/img/itenary-3.png" alt="Day 3 Itenary" width="200">
+|                               Sign Up                                |                                Login                                 |                               Plan Tab                               |
+| :------------------------------------------------------------------: | :------------------------------------------------------------------: | :------------------------------------------------------------------: |
+|   <img src="docs/img/sign-up.png" alt="Sign Up Page" width="200">    |     <img src="docs/img/login.png" alt="Login Page" width="200">      |       <img src="docs/img/plan.png" alt="Plan Tab" width="200">       |
+|                              **Day 1**                               |                              **Day 2**                               |                              **Day 3**                               |
+| <img src="docs/img/itenary-1.png" alt="Day 1 Itinerary" width="200"> | <img src="docs/img/itenary-2.png" alt="Day 2 Itinerary" width="200"> | <img src="docs/img/itenary-3.png" alt="Day 3 Itinerary" width="200"> |
 
 ## 🗺️ Roadmap & Next Steps
 
