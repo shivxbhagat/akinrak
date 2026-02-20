@@ -1,50 +1,71 @@
-# Welcome to your Expo app 👋
+# Akinrak 🌍✈️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Akinrak is an AI-powered travel planner and itinerary generator built with **Expo** and **React Native**. It aims to simplify trip planning by leveraging AI to generate, later-on real human will verify, and organize customized travel itineraries.
 
-## Get started
+> **Note:** This project is currently in active development.
 
-1. Install dependencies
+## 🚀 Current Status
 
-   ```bash
-   npm install
-   ```
+The foundational structure of Akinrak is laid out, with the following core components successfully integrated:
 
-2. Start the app
+-   **Authentication:** Fully implemented using **Clerk** for secure user onboarding and session management.
+-   **User Interface:** The **Final Itinerary UI** is complete, providing a clean, intuitive, and mobile-responsive presentation of the generated travel plans.
 
-   ```bash
-   npx expo start
-   ```
+## 🗺️ Roadmap & Next Steps
 
-In the output, you'll find options to open the app in a
+The immediate next phase focuses on the core AI engine and robust background processing:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+-   [ ] **AI Planner MVP:** Develop the minimum viable product for the AI engine to generate contextual travel itineraries based on user preferences.
+-   [ ] **Queue Implementation:** Set up a background queue system to handle the asynchronous generation and verification of trips. This ensures that the AI outputs are validated and structured properly before being presented to the user, without blocking the main UI thread.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Tech Stack
 
-## Get a fresh project
+-   **Framework:** Expo / React Native
+-   **Language:** TypeScript
+-   **Authentication:** Clerk
+-   **Package Manager:** pnpm
+-   **AI & Processing:** _Upcoming (AI Planner API & Queue-based verification)_
 
-When you're ready, run:
+## 💻 Getting Started
 
-```bash
-npm run reset-project
-```
+To run this project locally, ensure you have Node.js and `pnpm` installed.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+1. **Clone the repository:**
 
-## Learn more
+    ```bash
+    git clone [https://github.com/shivxbhagat/akinrak.git](https://github.com/shivxbhagat/akinrak.git)
+    cd akinrak
 
-To learn more about developing your project with Expo, look at the following resources:
+    ```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. Install dependencies
 
-## Join the community
+    ```bash
+    pnpm install
+    ```
 
-Join our community of developers creating universal apps.
+3. Set up Environment Variables
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+    Create a `.env` file in the root of the project and add the necessary environment variables.
+
+    ```bash
+    EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+    ```
+
+4. Start the app
+
+    ```bash
+    npx expo start
+    ```
+
+    or
+
+    ```bash
+    pnpm start
+    ```
+
+    In the terminal output, you'll find options to open the app in an Android emulator, iOS simulator, or via Expo Go on your physical device.
+
+## 🤝 Contributing
+
+As the project is currently in its early MVP stages, the main focus is establishing the UI, AI and queue architecture with a normal working backend. Feel free to open issues for suggestions or bug reports regarding the UI and auth flow!
