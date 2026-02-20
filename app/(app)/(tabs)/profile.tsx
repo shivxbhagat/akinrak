@@ -1,14 +1,13 @@
 import { useAuth } from "@clerk/clerk-expo";
-import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { GlassButton } from "@/components/glass";
 import { useAppTheme } from "@/lib/theme";
 
-const StartPage = () => {
+export default function ProfileScreen() {
 	const { signOut } = useAuth();
-	const { colors, isDark } = useAppTheme();
+	const { colors } = useAppTheme();
 
 	const handleSignOut = async () => {
 		try {
@@ -29,7 +28,7 @@ const StartPage = () => {
 			>
 				<View style={styles.header}>
 					<Text style={[styles.logo, { color: colors.onBackground }]}>
-						NAME
+						Profile
 					</Text>
 				</View>
 
@@ -37,7 +36,7 @@ const StartPage = () => {
 					<Text
 						style={[styles.title, { color: colors.onBackground }]}
 					>
-						Welcome Home!
+						Your Profile
 					</Text>
 					<Text
 						style={[
@@ -45,15 +44,14 @@ const StartPage = () => {
 							{ color: colors.onBackground, opacity: 0.7 },
 						]}
 					>
-						Your personalized experience starts here
+						Manage your account and preferences
 					</Text>
-
 					<GlassButton onPress={handleSignOut} label="Sign Out" />
 				</View>
 			</ScrollView>
 		</SafeAreaView>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
 	logo: {
 		fontSize: 24,
 		fontWeight: "900",
-		letterSpacing: 4,
+		letterSpacing: 2,
 	},
 	content: {
 		flex: 1,
@@ -93,8 +91,5 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: "400",
 		textAlign: "center",
-		marginBottom: 16,
 	},
 });
-
-export default StartPage;

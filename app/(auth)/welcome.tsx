@@ -71,7 +71,7 @@ export default function WelcomeScreen() {
 						</View>
 
 						{/* Brand Name */}
-						<Text style={styles.brandName}>akinrak</Text>
+						<Text style={styles.brandName}>name</Text>
 						<Text style={styles.tagline}>
 							Discover your perfect workspace, wherever you roam
 						</Text>

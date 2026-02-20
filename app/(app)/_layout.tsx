@@ -20,19 +20,14 @@ export default function AppLayout() {
 
 			{/* Main app - only when profile EXISTS */}
 			<Stack.Protected guard={hasProfile}>
-				<Stack.Screen name="(tabs)" />
+				<Stack.Screen name="(tabs)" />{" "}
 				<Stack.Screen
-					name="edit-profile"
-					options={{ headerShown: true, title: "Edit Profile" }}
-				/>
-				<Stack.Screen
-					name="chat/[id]"
-					options={{ headerShown: true, title: "Chat" }}
-				/>
-				<Stack.Screen
-					name="profile/[id]"
-					options={{ presentation: "modal" }}
-				/>
+					name="new-draft"
+					options={{
+						presentation: "modal",
+						headerShown: false,
+					}}
+				/>{" "}
 			</Stack.Protected>
 		</Stack>
 	);
