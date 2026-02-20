@@ -11,6 +11,18 @@ The foundational structure of Akinrak is laid out, with the following core compo
 -   **Authentication:** Fully implemented using **Clerk** for secure user onboarding and session management.
 -   **User Interface:** The **Final Itinerary UI** is complete, providing a clean, intuitive, and mobile-responsive presentation of the generated travel plans.
 
+<img src="docs/img/sign-up.png" alt="Sign Up Page" width="100">
+&nbsp;
+<img src="docs/img/login.png" alt="Login Page" width="100">
+&nbsp;
+<img src="docs/img/plan.png" alt="Plan Tab" width="100">
+&nbsp;
+<img src="docs/img/itenary-1.png" alt="Day 1 Itenary" width="100">
+&nbsp;
+<img src="docs/img/itenary-2.png" alt="Day 2 Itenary" width="100">
+&nbsp;
+<img src="docs/img/itenary-3.png" alt="Day 3 Itenary" width="100">
+
 ## 🗺️ Roadmap & Next Steps
 
 The immediate next phase focuses on the core AI engine and robust background processing:
